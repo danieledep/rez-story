@@ -1,12 +1,11 @@
 == README
 
-*Bootstrap for front-end work.
-
 *Ruby on Rails
 
-*Created a Timeline widget for direct posting/streaming. 
+*Bootstrap 
 
-*Twitter Gem 
+*Javascript
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+*Twitter Gem and Twitter Omniauth Gem 
+
+
