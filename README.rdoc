@@ -1,12 +1,19 @@
 == README
 
-*Bootstrap for front-end work.
-
 *Ruby on Rails
 
-*Created a Timeline widget for direct posting/streaming. 
+*Bootstrap 
 
-*Twitter Gem 
+*Javascript
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+*Twitter Gem and Twitter Omniauth Gem 
+
+Quick Summary:
+
+1) So far I have used Bootstrap for some simple front-end work.
+
+2) The platform I'm most comfortable with is Rails. So the whole backend is built upon it. 
+
+3) I'm using javascript to get the geolocation of the user that is opening up the page, and to display any tweets with the #NowPlaying within close proximity to the user
+
+4) I'm using two rails gems (Twitter Gem, and Omniauth-twitter) in order to interact with the Twitter API and be able to send tweets on behalf of BINowplaying user.
