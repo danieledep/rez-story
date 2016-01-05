@@ -1,0 +1,33 @@
+<div class"=row">
+	<div class="col-md-1"></div>
+	<div class="col-md-11">
+		<h1>#NowPlaying </h1>
+	</div>
+</div>
+
+<div class="col-md-6 col-md-offset-3">
+	<p>
+	  <%= form_for :tweet, url: tweets_path, method: :post, html: { id: 'tweet-form' } do |f| %>
+	  	<%= f.hidden_field :lat %>
+	  	<%= f.hidden_field :lng %>
+	  	Youtube URL: <%= f.text_field :youtube_url %>
+	    Message: <%= f.text_field :message %>
+	    <%= f.submit "Send Tweet" %>
+	  <% end %>
+	</p>
+</div>
+
+<div class="row">
+	<div class="col-md-10 col-md-offset-2" id='tweet-area'>
+		Loading...
+	</div>
+<div>
+
+<script type='text/javascript'>
+	NowPlaying.Home.setup();
+</script>
+
+
+
+
+

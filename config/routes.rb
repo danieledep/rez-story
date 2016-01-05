@@ -3,10 +3,15 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   
   get 'signout', to: 'sessions#destroy', as: 'signout'
-  resources :tweets, only: [:new, :create]
+  resources :tweets, only: [:new, :create] do
+    collection do
+      get :search
+    end
+  end
   resources :sessions, only: [:create, :destroy]
   resource :home, only: [:show]
 
+  get 'prototype', to: 'home#prototype'
   root 'home#show'
 
   # The priority is based upon order of creation: first created -> highest priority.

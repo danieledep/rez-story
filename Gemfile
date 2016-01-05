@@ -16,8 +16,8 @@ gem 'coffee-rails', '~> 4.1.0'
 
 #
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
-gem 'twitter', '~> 5.3.1'
-gem 'omniauth-twitter', '~> 1.0.1'
+gem 'twitter', '~> 5.15'
+gem 'omniauth-twitter', '~> 1.2', '>= 1.2.1'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

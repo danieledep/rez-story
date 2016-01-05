@@ -1,0 +1,10 @@
+<div class="twitter-timeline">
+	<% if @tweets.any? %>
+		<% @tweets.each do |tweet| %>
+			<%= tweet.user.name %>: <%= tweet.text %><br/>
+			<%= link_to 'link', tweet.uri.to_s %><br/><br/><br/>
+		<% end %>
+	<% else %>
+		Sorry, there are no #NowPlaying tweets near you.
+	<% end %>
+</div>

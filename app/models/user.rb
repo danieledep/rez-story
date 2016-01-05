@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-	def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
       user.provider = auth.provider
       user.uid = auth.uid
       user.name = auth.info.name
@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def tweet(tweet)
+  def tweet(tweet, options={})
     client = Twitter::REST::Client.new do |config|
       config.consumer_key        = Rails.application.config.twitter_key
       config.consumer_secret     = Rails.application.config.twitter_secret
@@ -18,6 +18,6 @@ class User < ActiveRecord::Base
       config.access_token_secret = oauth_secret
     end
     
-    client.update(tweet)
+    client.update(tweet, options)
   end
 end
