@@ -48,4 +48,6 @@ Rails.application.configure do
   config.active_support.deprecation = :log
   config.active_record.migration_error = :page_load
   config.assets.debug = true
+  config.twitter_key = "CXVNsTDohsJaIxl0cjpuLKXYr"
+  config.twitter_secret = "Y49dNi2NPN9vJaPS95QnRLslOqisEuC7v934lHOfN05cVjbtDB"
 end
