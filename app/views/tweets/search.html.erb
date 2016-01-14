@@ -1,10 +1,18 @@
-<div class="twitter-timeline">
-	<% if @tweets.any? %>
+<% if @tweets.any? %>
+	<ul>
 		<% @tweets.each do |tweet| %>
-			<%= tweet.user.name %>: <%= tweet.text %><br/>
-			<%= link_to 'link', tweet.uri.to_s %><br/><br/><br/>
+		<li class="tweet">
+			<h3>Some video</h3>
+			<% if tweet.uris? && tweet.uris[0].expanded_url.to_s.include?("youtu") %>
+			<iframe src="https://www.youtube.com/embed/<%= tweet.uris[0].expanded_url.to_s[17..-1] %>" frameborder="0" allowfullscreen></iframe>
+			<% end %>
+			<h4><%= tweet.user.name %></h4>
+			<p><%= tweet.user.profile_banner_uri.to_s %></p>
+			<p><%= tweet.text %></p>
+			<p><%= tweet.user.screen_name %></p>
+		</li>
 		<% end %>
-	<% else %>
-		Sorry, there are no #NowPlaying tweets near you.
-	<% end %>
-</div>
+    </ul>	
+<% else %>
+	Sorry, there are no #NowPlaying tweets near you.
+<% end %>
