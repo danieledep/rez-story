@@ -12,14 +12,18 @@
 <body>
 
 <div class="container">
-	<div>
-	    <% if current_user %>
-	      Signed in as <strong><%= current_user.name %></strong>!
-	      <%= link_to "Sign out", signout_path, id: "sign_out" %>
-	    <% else %>
-	      <%= link_to "Sign in with Twitter", "/auth/twitter", id: "sign_in" %>
-	    <% end %>
-  	</div>
+  <div class="row">
+    <div class="col-md-11 col-md-offset-2">
+  	  <div>
+  	    <% if current_user %>
+  	      Signed in as <strong><%= current_user.name %></strong>!
+  	      <%= link_to "Sign out", signout_path, id: "sign_out" %>
+  	    <% else %>
+  	      <%= link_to "Sign in with Twitter", "/auth/twitter", id: "sign_in" %>
+  	    <% end %>
+    	</div>
+    </div>
+  </div>
 	<%= yield %>
 </div>
 

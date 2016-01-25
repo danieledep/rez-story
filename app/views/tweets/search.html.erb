@@ -2,7 +2,7 @@
 	<ul>
 		<% @tweets.each do |tweet| %>
 		<li class="tweet">
-			<h3>Some video</h3>
+			<h3>Video</h3>
 			<% if tweet.uris? && tweet.uris[0].expanded_url.to_s.include?("youtu") %>
 			<iframe src="https://www.youtube.com/embed/<%= tweet.uris[0].expanded_url.to_s[17..-1] %>" frameborder="0" allowfullscreen></iframe>
 			<% end %>

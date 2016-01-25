@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resource :home, only: [:show]
 
   get 'prototype', to: 'home#prototype'
-  root 'home#show'
+  root 'home#prototype'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
