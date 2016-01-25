@@ -17,3 +17,5 @@ Quick Summary:
 3) I'm using javascript to get the geolocation of the user that is opening up the page, and to display any tweets with the #NowPlaying within close proximity to the user
 
 4) I'm using two rails gems (Twitter Gem, and Omniauth-twitter) in order to interact with the Twitter API and be able to send tweets on behalf of BINowplaying user.
+
+Check the demo out https://hidden-chamber-4654.herokuapp.com/ 
