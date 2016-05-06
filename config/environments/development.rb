@@ -48,6 +48,6 @@ Rails.application.configure do
   config.active_support.deprecation = :log
   config.active_record.migration_error = :page_load
   config.assets.debug = true
-  ENV['TWITTER_KEY'] = "CXVNsTDohsJaIxl0cjpuLKXYr"
-  ENV['TWITTER_SECRET'] = "Y49dNi2NPN9vJaPS95QnRLslOqisEuC7v934lHOfN05cVjbtDB"
+  ENV['TWITTER_KEY'] = "EJecKKXF7dhC9zEUxLqaGW3Ul"
+  ENV['TWITTER_SECRET'] = "XUacO6oFB5LdAIlc0f4NOeDiyAYlo5Sp0tPbLmWyCPTvb9V0pq"
 end

@@ -1,0 +1,21 @@
+development:
+  #API key/secret
+  consumer_key: EJecKKXF7dhC9zEUxLqaGW3Ul
+  consumer_secret:  XUacO6oFB5LdAIlc0f4NOeDiyAYlo5Sp0tPbLmWyCPTvb9V0pq
+  #Access token/secret
+  access_token: 723167236949716993-z6RH0HbqwlzWl1mhmwX6llaY0n0ttpy
+  access_token_secret: 3EQQDshobdyVzrNK5GlCGXPhA1EOfqhfxuGcDFOWj
+test:
+  #API key/secret
+  consumer_key: EJecKKXF7dhC9zEUxLqaGW3Ul
+  consumer_secret:  XUacO6oFB5LdAIlc0f4NOeDiyAYlo5Sp0tPbLmWyCPTvb9V0pq
+  #Access token/secret
+  access_token: 723167236949716993-z6RH0HbqwlzWl1mhmwX6llaY0n0ttpy
+  access_token_secret: 3EQQDshobdyVzrNK5GlCGXPhA1EOfqhfxuGcDFOWj
+production:
+  #API key/secret
+  consumer_key: EJecKKXF7dhC9zEUxLqaGW3Ul
+  consumer_secret:  XUacO6oFB5LdAIlc0f4NOeDiyAYlo5Sp0tPbLmWyCPTvb9V0pq
+  #Access token/secret
+  access_token: 723167236949716993-z6RH0HbqwlzWl1mhmwX6llaY0n0ttpy
+  access_token_secret: 3EQQDshobdyVzrNK5GlCGXPhA1EOfqhfxuGcDFOWj
