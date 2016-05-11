@@ -14,6 +14,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem 'geocoder'
 gem 'activemodel'
+gem 'mini_portile2'
 #
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'twitter', '~> 5.15'
