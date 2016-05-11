@@ -25,7 +25,7 @@ class TweetsController < ApplicationController
   def search
   	@tweets = twitter_client.search(
   		"from:rez_story #réz_story",
-		geocode: "#{params[:lat]},#{params[:lng]},5km"
+		geocode: "#{params[:lat]},#{params[:lng]},1km"
 		
   		
   	)
