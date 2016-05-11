@@ -16,17 +16,23 @@ class TweetsController < ApplicationController
     redirect_to prototype_path
   end
 
+
+
   def twitter_params
-    params.require(:tweet).permit(:message, :youtube_url, :lat, :lng)
+    params.require(:tweet).permit(:message, :lat, :lng)
   end
 
   def search
   	@tweets = twitter_client.search(
-  		'#nowplaying',
-  		geocode: "#{params[:lat]},#{params[:lng]},500mi"
+  		"from:rez_story #réz_story",
+		geocode: "#{params[:lat]},#{params[:lng]},5km"
+		
+  		
   	)
   	render layout: false
+	
   end
+
 
   private
 
@@ -34,8 +40,8 @@ class TweetsController < ApplicationController
   	# TODO: memoize?
   	Twitter::REST::Client.new do |config|
   		# TODO: put in ENV variables
-  		config.consumer_key = 'CXVNsTDohsJaIxl0cjpuLKXYr'
-  		config.consumer_secret = 'Y49dNi2NPN9vJaPS95QnRLslOqisEuC7v934lHOfN05cVjbtDB'
+  		config.consumer_key = 'EJecKKXF7dhC9zEUxLqaGW3Ul'
+  		config.consumer_secret = 'XUacO6oFB5LdAIlc0f4NOeDiyAYlo5Sp0tPbLmWyCPTvb9V0pq'
   	end
   end
 end

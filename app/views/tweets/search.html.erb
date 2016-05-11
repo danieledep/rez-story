@@ -1,18 +1,29 @@
 <% if @tweets.any? %>
-	<ul>
+	<ul style="margin:auto">
 		<% @tweets.each do |tweet| %>
 		<li class="tweet">
-			<h3>Video</h3>
-			<% if tweet.uris? && tweet.uris[0].expanded_url.to_s.include?("youtu") %>
-			<iframe src="https://www.youtube.com/embed/<%= tweet.uris[0].expanded_url.to_s[17..-1] %>" frameborder="0" allowfullscreen></iframe>
-			<% end %>
-			<h4><%= tweet.user.name %></h4>
-			<p><%= tweet.user.profile_banner_uri.to_s %></p>
-			<p><%= tweet.text %></p>
-			<p><%= tweet.user.screen_name %></p>
+			 
+			<h4>@<%= tweet.user.name %></h4>
+			<%
+					linked = tweet.text.gsub( %r{https://[^\s<]+} ) do |url|
+					    "<a href='#{url}' class='text_link' target = 'blank'>#{url}</a>"
+					end
+				
+				%>
+			<p><%= linked.html_safe %></p>
+			<p><%= image_tag(tweet.media[0]["media_url"], :size => tweet.media[0]["sizes"]["thumb"]) if(tweet.media.present?) %></p>
+			<p><% dst= Geocoder::Calculations.distance_between( [tweet.geo.coordinates[0],tweet.geo.coordinates[1]], [ params[:lat],params[:lng]],  options = {:units => :km} ) %></p>
+			<p><% br= Geocoder::Calculations.bearing_between( [ params[:lat],params[:lng]], [tweet.geo.coordinates[0],tweet.geo.coordinates[1]]) %></p>
+			<p style="color:#696969;">direzione: <%= dst = (dst*1000).round(0) %>  metri <%= br= Geocoder::Calculations.compass_point(br) %></p>
+			
+			
+			
+
+		
+			
 		</li>
 		<% end %>
     </ul>	
 <% else %>
-	Sorry, there are no #NowPlaying tweets near you.
+	Mmmh.. pare che non ci siano tweet da @réz-story nelle vicinanze.
 <% end %>

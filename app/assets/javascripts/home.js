@@ -13,6 +13,7 @@ NowPlaying.Home = function() {
 		});
 	};
 
+	// coordinate per caricare tuoi video - disabilitato
 	var setFormLocation = function(lat, lng) {
 		$('#tweet-form #tweet_lat').val(lat);
 		$('#tweet-form #tweet_lng').val(lng);
