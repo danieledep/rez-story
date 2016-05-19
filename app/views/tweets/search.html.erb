@@ -1,3 +1,62 @@
+<div class="col-md-5 col-md-offset-4">
+<div id='map'>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuaWVsZWRlcCIsImEiOiJjaW9iN3A3cnEwMDJudXdtMXkxdWkzcmVqIn0.YI8rMksuO-2ndAnGkAv6IA';
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/danieledep/ciod0wb8r00ekbvnt8lnrml3i', //stylesheet location
+    center: [10.63, 44.7], // starting position
+    zoom: 14 // starting zoom
+});
+
+
+var features = [];
+
+<% if @tweets.any? %>
+<% @tweets.each do |tweet| %>
+		features.push({
+			type:'Feature',
+			geometry:{
+				type:'Point',
+				coordinates:[<%=tweet.geo.coordinates[1]%>, <%=tweet.geo.coordinates[0]%>]
+			},
+			properties:{
+				title:"",
+				"marker-symbol": "harbor"
+			}
+		});
+<% end %>
+<% end %>
+
+var sourceObj = new mapboxgl.GeoJSONSource({
+   data: {
+       "type": "FeatureCollection",
+       "features": features
+   	}
+});
+
+map.on('load', function () {
+
+    map.addSource("markers",sourceObj);
+
+    map.addLayer({
+        "id": "markers",
+        "type": "symbol",
+        "source": "markers",
+        "layout": {
+            "icon-image": "{marker-symbol}-15",
+            "text-field": "{title}",
+            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+            "text-offset": [0, 0.6],
+            "text-anchor": "top"
+        }
+    });
+});
+
+</script>
+</div>
+</div>
+
 <% if @tweets.any? %>
 	<ul class="col-md-6 col-md-offset-3">
 		<% @tweets.each do |tweet| %>
