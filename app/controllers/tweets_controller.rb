@@ -23,12 +23,7 @@ class TweetsController < ApplicationController
   end
 
   def search
-  	@tweets = twitter_client.search(
-  		"from:rez_story #réz_story",
-		geocode: "#{params[:lat]},#{params[:lng]},20km"
-		
-  		
-  	)
+  	@tweets = twitter_client.user_timeline("rez_story", { count: 200, include_url: false, exclude_replies: true })
   	render layout: false
 	
   end

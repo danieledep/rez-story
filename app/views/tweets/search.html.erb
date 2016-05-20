@@ -1,4 +1,5 @@
-<div class="col-md-5 col-md-offset-4">
+
+<div class="col-md-8 col-md-offset-2">
 <div id='map'>
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuaWVsZWRlcCIsImEiOiJjaW9iN3A3cnEwMDJudXdtMXkxdWkzcmVqIn0.YI8rMksuO-2ndAnGkAv6IA';
@@ -6,14 +7,19 @@ var map = new mapboxgl.Map({
     container: 'map', // container id
     style: 'mapbox://styles/danieledep/ciod0wb8r00ekbvnt8lnrml3i', //stylesheet location
     center: [10.63, 44.7], // starting position
-    zoom: 14 // starting zoom
+    zoom: 15 // starting zoom
 });
 
 
 var features = [];
+var col = 0;
 
 <% if @tweets.any? %>
 <% @tweets.each do |tweet| %>
+		
+		if (col<5) col++;
+		else col = 1;
+
 		features.push({
 			type:'Feature',
 			geometry:{
@@ -22,7 +28,10 @@ var features = [];
 			},
 			properties:{
 				title:"",
-				"marker-symbol": "harbor"
+				description: '<%=tweet.text %><br><%= image_tag(tweet.media[0]["media_url"], :size => tweet.media[0]["sizes"]["thumb"], class: "img-responsive") if(tweet.media.present?) %>',
+				"marker-symbol": "dan"+col
+				
+				
 			}
 		});
 <% end %>
@@ -45,6 +54,7 @@ map.on('load', function () {
         "source": "markers",
         "layout": {
             "icon-image": "{marker-symbol}-15",
+            
             "text-field": "{title}",
             "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
             "text-offset": [0, 0.6],
@@ -53,13 +63,44 @@ map.on('load', function () {
     });
 });
 
+
+
+// When a click event occurs near a marker icon, open a popup at the location of
+// the feature, with description HTML from its properties.
+map.on('click', function (e) {
+    var features = map.queryRenderedFeatures(e.point, { layers: ['markers'] });
+
+    if (!features.length) {
+        return;
+    }
+
+    var feature = features[0];
+
+    // Populate the popup and set its coordinates
+    // based on the feature found.
+    var popup = new mapboxgl.Popup()
+        .setLngLat(feature.geometry.coordinates)
+        .setHTML(feature.properties.description)
+        .addTo(map);
+});
+
+// Use the same approach as above to indicate that the symbols are clickable
+// by changing the cursor style to 'pointer'.
+map.on('mousemove', function (e) {
+    var features = map.queryRenderedFeatures(e.point, { layers: ['markers'] });
+    map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+});
+
 </script>
 </div>
 </div>
 
 <% if @tweets.any? %>
-	<ul class="col-md-6 col-md-offset-3">
+	<ul class="col-md-8 col-md-offset-2">
 		<% @tweets.each do |tweet| %>
+		<p><% dst= Geocoder::Calculations.distance_between( [tweet.geo.coordinates[0],tweet.geo.coordinates[1]], [ params[:lat],params[:lng]],  options = {:units => :km} ) %></p>
+		
+		<% if dst<=0.3 %>
 		<li class="tweet">
 			 
 			<h4>@<%= tweet.user.name %></h4>
@@ -71,7 +112,7 @@ map.on('load', function () {
 				%>
 			<p><%= linked.html_safe %></p>
 			<p><%= image_tag(tweet.media[0]["media_url"], :size => tweet.media[0]["sizes"]["thumb"], class: "img-responsive") if(tweet.media.present?) %></p>
-			<p><% dst= Geocoder::Calculations.distance_between( [tweet.geo.coordinates[0],tweet.geo.coordinates[1]], [ params[:lat],params[:lng]],  options = {:units => :km} ) %></p>
+			
 			<p><% br= Geocoder::Calculations.bearing_between( [ params[:lat],params[:lng]], [tweet.geo.coordinates[0],tweet.geo.coordinates[1]]) %></p>
 			<p style="color:#696969;">direzione: <%= dst = (dst*1000).round(0) %>  metri <%= br= Geocoder::Calculations.compass_point(br) %></p>
 			
@@ -81,6 +122,7 @@ map.on('load', function () {
 		
 			
 		</li>
+		<% end %>
 		<% end %>
     </ul>	
 <% else %>
