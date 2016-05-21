@@ -95,12 +95,14 @@ map.on('mousemove', function (e) {
 </div>
 </div>
 
+<% found=0 %>
 <% if @tweets.any? %>
 	<ul class="col-md-8 col-md-offset-2">
 		<% @tweets.each do |tweet| %>
 		<p><% dst= Geocoder::Calculations.distance_between( [tweet.geo.coordinates[0],tweet.geo.coordinates[1]], [ params[:lat],params[:lng]],  options = {:units => :km} ) %></p>
 		
 		<% if dst<=0.3 %>
+		<% found=1 %>
 		<li class="tweet">
 			 
 			<h4>@<%= tweet.user.name %></h4>
@@ -126,5 +128,11 @@ map.on('mousemove', function (e) {
 		<% end %>
     </ul>	
 <% else %>
-	Mmmh.. pare che non ci siano tweet da @réz-story nelle vicinanze, prova ad andare nel centro storico.
+	Mmmh.. pare che non ci siano tweet da @réz-story nelle vicinanze, prova ad andare verso il centro storico.
+<% end %>
+<% if found==0 %>
+	<div class="col-md-8 col-md-offset-2">
+	<br>
+	Mmmh.. pare che non ci siano tweet da @réz-story nelle vicinanze, prova ad andare verso il centro storico.
+	</div>
 <% end %>
