@@ -35,7 +35,7 @@ var col = 0;
 			},
 			properties:{
 				title:"",
-				description: '<%=linkest.to_json %><br><%= image_tag(tweet.media[0]["media_url_https"], :size => tweet.media[0]["sizes"]["thumb"], class: "img-responsive") if(tweet.media.present?) %>',
+				description: '<%=tweet.text %><br><%= image_tag(tweet.media[0]["media_url_https"], :size => tweet.media[0]["sizes"]["thumb"], class: "img-responsive") if(tweet.media.present?) %>',
 				"marker-symbol": "dan"+col
 				
 				
