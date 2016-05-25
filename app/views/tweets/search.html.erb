@@ -20,6 +20,13 @@ var col = 0;
 		if (col<5) col++;
 		else col = 1;
 
+		<%
+			linkest = tweet.text.gsub( %r{https://[^\s<]+} ) do |url|
+			"<a href='#{url}' class='text_link' target = 'blank'>#{url}</a>"
+			end
+				
+		%>
+
 		features.push({
 			type:'Feature',
 			geometry:{
@@ -28,7 +35,7 @@ var col = 0;
 			},
 			properties:{
 				title:"",
-				description: '<%=tweet.text %><br><%= image_tag(tweet.media[0]["media_url"], :size => tweet.media[0]["sizes"]["thumb"], class: "img-responsive") if(tweet.media.present?) %>',
+				description: '<%=linkest.to_json %><br><%= image_tag(tweet.media[0]["media_url_https"], :size => tweet.media[0]["sizes"]["thumb"], class: "img-responsive") if(tweet.media.present?) %>',
 				"marker-symbol": "dan"+col
 				
 				
@@ -113,7 +120,7 @@ map.on('mousemove', function (e) {
 				
 				%>
 			<p><%= linked.html_safe %></p>
-			<p><%= image_tag(tweet.media[0]["media_url"], :size => tweet.media[0]["sizes"]["thumb"], class: "img-responsive") if(tweet.media.present?) %></p>
+			<p><%= image_tag(tweet.media[0]["media_url_https"], :size => tweet.media[0]["sizes"]["thumb"], class: "img-responsive") if(tweet.media.present?) %></p>
 			
 			<p><% br= Geocoder::Calculations.bearing_between( [ params[:lat],params[:lng]], [tweet.geo.coordinates[0],tweet.geo.coordinates[1]]) %></p>
 			<p style="color:#696969;">direzione: <%= dst = (dst*1000).round(0) %>  metri <%= br= Geocoder::Calculations.compass_point(br) %></p>
