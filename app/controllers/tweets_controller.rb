@@ -29,6 +29,7 @@ class TweetsController < ApplicationController
   end
 
 
+
   private
 
   def twitter_client

@@ -22,11 +22,14 @@ var col = 0;
 
 		<%
 			linkest = tweet.text.gsub( %r{https://[^\s<]+} ) do |url|
-			"<a href='#{url}' class='text_link' target = 'blank'>#{url}</a>"
+			"<a href=#{url} class=text_link target = _blank>#{url}</a>"
+			
 			end
+
 				
 		%>
 
+		
 		features.push({
 			type:'Feature',
 			geometry:{
@@ -35,7 +38,7 @@ var col = 0;
 			},
 			properties:{
 				title:"",
-				description: '<%=tweet.text %><br><%= image_tag(tweet.media[0]["media_url_https"], :size => tweet.media[0]["sizes"]["thumb"], class: "img-responsive") if(tweet.media.present?) %>',
+				description: '<p><%= linkest.to_json %><br><%= image_tag(tweet.media[0]["media_url_https"], :size => tweet.media[0]["sizes"]["thumb"], class: "img-responsive") if(tweet.media.present?) %></p>',
 				"marker-symbol": "dan"+col
 				
 				
@@ -135,11 +138,11 @@ map.on('mousemove', function (e) {
 		<% end %>
     </ul>	
 <% else %>
-	Mmmh.. pare che non ci siano tweet da @réz-story nelle vicinanze, prova ad andare verso il centro storico.
+	Mmmh.. pare che non ci siano tweet da @réz-story nelle tue vicinanze, prova ad andare verso il centro storico.
 <% end %>
 <% if found==0 %>
 	<div class="col-md-8 col-md-offset-2">
 	<br>
-	Mmmh.. pare che non ci siano tweet da @réz-story nelle vicinanze, prova ad andare verso il centro storico.
+	Mmmh.. pare che non ci siano tweet da @réz-story nelle tue vicinanze, prova ad andare verso il centro storico.
 	</div>
 <% end %>
