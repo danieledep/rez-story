@@ -111,7 +111,7 @@ map.on('mousemove', function (e) {
 		<% @tweets.each do |tweet| %>
 		<p><% dst= Geocoder::Calculations.distance_between( [tweet.geo.coordinates[0],tweet.geo.coordinates[1]], [ params[:lat],params[:lng]],  options = {:units => :km} ) %></p>
 		
-		<% if dst<=0,5 %>
+		<% if dst<=0.5 %>
 		<% found=1 %>
 		<li class="tweet">
 			 
