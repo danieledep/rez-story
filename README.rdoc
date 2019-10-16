@@ -18,4 +18,4 @@ Quick Summary:
 
 4) I'm using two rails gems (Twitter Gem, and Omniauth-twitter) in order to interact with the Twitter API and be able to send tweets on behalf of BINowplaying user.
 
-Check the demo out https://hidden-chamber-4654.herokuapp.com/ 
+
