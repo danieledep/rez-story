@@ -1,6 +1,6 @@
 == README
 
-![alt text](https://github.com/danieledep/rez-story/blob/master/public/assets/logo-57fe7307e24d630bec56f459063e006f2bfc14ce8554f2813fb2381ac2656ada.png)
+https://github.com/danieledep/rez-story/blob/master/public/assets/logo-57fe7307e24d630bec56f459063e006f2bfc14ce8554f2813fb2381ac2656ada.png
 
 Twitter client written with Ruby on Rails, front end in Bootstrap.
 Academic project that pins tweets from a twitter account on a map.
