@@ -1,21 +1,8 @@
 == README
 
-*Ruby on Rails
+Twitter client written with Ruby on Rails, front end in Bootstrap.
+Academic project that pins tweets from a twitter account on a map.
+The tweets tell historic facts about the city of Reggio Emilia, Italy, pinned in relevant location on a map. By accessing the map from a web browser and allowing geo-localization you will also see a list of pins ordered by proximity.
 
-*Bootstrap 
-
-*Javascript
-
-*Twitter Gem and Twitter Omniauth Gem 
-
-Quick Summary:
-
-1) So far I have used Bootstrap for some simple front-end work.
-
-2) The platform I'm most comfortable with is Rails. So the whole backend is built upon it. 
-
-3) I'm using javascript to get the geolocation of the user that is opening up the page, and to display any tweets with the #NowPlaying within close proximity to the user
-
-4) I'm using two rails gems (Twitter Gem, and Omniauth-twitter) in order to interact with the Twitter API and be able to send tweets on behalf of BINowplaying user.
-
-
+Based on :
+@twitterdev/ruby-app-tweetmap
